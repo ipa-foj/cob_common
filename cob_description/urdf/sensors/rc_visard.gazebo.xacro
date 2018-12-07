@@ -1,35 +1,51 @@
 <?xml version="1.0"?>
+
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 <!--robot name="rc_visard_gazebo" xmlns:xacro="http://ros.org/wiki/xacro"-->
     <!--xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_65.xacro" /-->
     <!--xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_160.xacro" /-->
+
+
   <xacro:macro name="rc_65_gazebo" params="prefix parent *origin">
+
     <link name="${prefix}imu"/>
     <joint name="${prefix}mounting_to_imu" type="fixed">
       <parent link="${prefix}camera"/>
       <child link="${prefix}imu"/>
       <origin xyz="0.1163 -0.0269 -0.029" />
     </joint>
+
     <xacro:rc_65 parent="${parent}" prefix="${prefix}">
       <insert_block name="origin"/>
     </xacro:rc_65>
+
     <xacro:rc_visard_gazebo_imu prefix=""/>
     <xacro:rc_visard_gazebo_camera prefix="" baseline="0.065" pointCloudCutoff="0.2"/>
+
   </xacro:macro>
+
+
   <xacro:macro name="rc_160_gazebo" params="prefix parent *origin">
+
     <link name="${prefix}imu"/>
     <joint name="${prefix}mounting_to_imu" type="fixed">
       <parent link="${prefix}camera"/>
       <child link="${prefix}imu"/>
       <origin xyz="0.1163 -0.0269 -0.029" />
     </joint>
+
     <xacro:rc_160 parent="${parent}" prefix="${prefix}">
       <insert_block name="origin"/>
     </xacro:rc_160>
+
     <xacro:rc_visard_gazebo_imu prefix=""/>
     <xacro:rc_visard_gazebo_camera prefix="" baseline="0.16" pointCloudCutoff="0.5"/>
+
   </xacro:macro>
+
+
   <xacro:macro name="rc_visard_gazebo_imu" params="prefix">
+
     <gazebo reference="${prefix}imu">
       <sensor type="imu" name="imu">
         <always_on>true</always_on>
@@ -37,6 +53,7 @@
       </sensor>
       <material>Gazebo/Grey</material>
     </gazebo>
+
     <gazebo>
       <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
         <alwaysOn>true</alwaysOn>
@@ -65,8 +82,12 @@
         </imu>
       </plugin>
     </gazebo>
+
   </xacro:macro>
+
+
   <xacro:macro name="rc_visard_gazebo_camera" params="prefix baseline pointCloudCutoff">
+
     <gazebo reference="${prefix}camera">
       <sensor name="${prefix}depth" type="depth">
         <update_rate>3</update_rate>
@@ -105,7 +126,9 @@
         </plugin>
       </sensor>
     </gazebo>
+
     <gazebo reference="${prefix}camera">
+
       <sensor type="multicamera" name="camera">
         <update_rate>25.0</update_rate>
         <camera name="left">
@@ -165,5 +188,9 @@
         </plugin>
       </sensor>
     </gazebo>
+
   </xacro:macro>
+
+
+
 </robot>
