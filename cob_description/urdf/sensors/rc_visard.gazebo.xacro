@@ -48,6 +48,7 @@
 
     <gazebo reference="${prefix}imu">
       <sensor type="imu" name="imu">
+	<update_rate>200</update_rate>
         <always_on>true</always_on>
         <visualize>false</visualize>
       </sensor>
