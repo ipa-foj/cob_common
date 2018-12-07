@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-<!--robot name="rc_visard_gazebo" xmlns:xacro="http://ros.org/wiki/xacro"-->
-    <!--xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_65.xacro" /-->
-    <!--xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_160.xacro" /-->
+<!--robot name="rc_visard_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_65.xacro" />
+    <xacro:include filename="$(find rc_visard_description)/urdf/rc_visard_160.xacro" /-->
 
 
   <xacro:macro name="rc_65_gazebo" params="prefix parent *origin">
@@ -48,7 +47,6 @@
 
     <gazebo reference="${prefix}imu">
       <sensor type="imu" name="imu">
-	<update_rate>200</update_rate>
         <always_on>true</always_on>
         <visualize>false</visualize>
       </sensor>
